@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopee -App</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #f3f3f3
+        }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image:url('https://images.unsplash.com/32/Mc8kW4x9Q3aRR3RkP5Im_IMG_4417.jpg?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlkZW8lMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&amp;');  
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Style the content */
+        .content {
+            margin-right: 30px;
+            margin-left: 230px;
+            padding-left: 50px;
+            padding-bottom: 1000px;
+            background-color: cadetblue;
+        }
+
+
+
+
+
+
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        
+        }
+
+
+        .header {
+            background-color: #d8d8d8;
+            
+            margin-left: 200px;
+            
+            text-align: center;
+        }
+
+        .img1{
+            border: 1px solid black;
+            float: left;
+            margin-right: 10px;
+            margin-bottom: 30px;
+        }
+
+        .topnav{
+        overflow: hidden;
+            background-color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topnav a{
+            float: left;
+            font-size: 16px;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: flex;
+            
+        }
+        .topnav a:hover{
+            background-color: #111;
+        }
+        .wrapper{
+            max-width: 450px;
+            margin: 150px auto;
+        }
+        .wrapper .search-input{
+            position: relative;
+            background-color: #fff;
+            
+            width:100%;
+            border-radius:5px;
+            box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+
+        }
+        .search-input input{
+            
+            height: 55px;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius:5px;
+            padding:0 60px 0 20px;
+            font-size: 18px;
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+        }
+        .search-input .icon{ 
+            height: 55px;
+            width: 55px;
+            line-height: 55px;
+            position: absolute;
+            top:0;
+            right: 0;
+            text-align: center;
+            font-size: 20px;
+            color: #644bff;
+            cursor: pointer;
+        }
+        .btn {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 2px;
+            
+            font-size: 16px;
+            cursor: pointer;
+        
+        }
+
+            /* Darker background on mouse-over */
+        .btn:hover {
+            background-color: #111;
+        }
+
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            padding: 14px 16px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }        
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }       
+
+        .dropbtn:hover {
+            background-color: #111;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+        }
+
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
+
+        .search-input .autocom-box{
+            padding:0px;
+            max-height: 280px;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .search-input.active .autocom-box{
+            padding:10px 8px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .search-input.active .autocom-box li{
+            display: block;
+        }
+        .autocom-box li{
+            list-style: none;
+            padding: 8px 12px;
+            width: 100%;
+            cursor: default;
+            border-radius: 3px;
+            display: none;
+        }
+        .autocom-box li:hover{
+            background-color: #efefef;
+        }
+
+
+        .container{
+            width: 100%;
+            text-align: center;
+        }
+        input[type="radio"]{
+            display: none;
+        }
+        h1{
+            margin: 40px 0;
+            position: relative;
+            font-weight: normal;
+            font-size: 35px;
+            color: #efeded;
+        }
+        .top-content{
+            background-color: rgb(243,243,243);
+            margin: 0 auto 20px auto;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            border-radius:5px;
+            width: 80%;
+            box-shadow: 3px 3px 5px lightgray;
+        }
+        h3{
+            height: 100%;
+            background-color: lightgray;
+            line-height: 60px;
+            padding: 0 60px;
+        }
+        label{
+            display: inline-block;
+            height: 100%;
+            padding : 0 10px;
+            margin:0 50px;
+            line-height:60px;
+            cursor: pointer;
+        }
+        label:hover{
+            background-color: lightgray;
+        }
+        .photo-gallery{
+            width: 90%;
+            margin: auto;
+            display: grid;
+            /* grid-template-columns: repeat(4,1fr); */
+            grid-gap:15px;
+        }
+        .pic{
+            position: relative;
+            height: 230px;
+        }
+        .pic img{
+            margin-right :450px;
+            width: 50%;
+            height: 100%;
+            transition: .5s;
+        }
+        .pic::before{
+            content: "ANIMAL";
+            position: absolute;
+            top:50%;
+            left:50%;
+            font-size: 25px;
+            color: #e39797;
+            transform: translate(-50%,-50%);
+            opacity: 0;
+        }
+        .pic ::after{
+            content: "";
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+
+        }
+        #check1:checked ~ .container .photo-gallery .pic{
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            transition: .5s;
+
+        }
+        #check1:checked ~ .container .photo-gallery .tiger,
+        #check1:checked ~ .container .photo-gallery .panda,
+        #check1:checked ~ .container .photo-gallery .dolphin{
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
+            transition: .5s;
+
+        }
+
+        #check2:checked ~ .container .photo-gallery .dophin{
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            transition: .5s;
+
+        }
+        #check2:checked ~ .container .photo-gallery .tiger,
+        #check2:checked ~ .container .photo-gallery .panda,
+        #check2:checked ~ .container .photo-gallery .dog{
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
+            transition: .5s;
+
+        }
+
+        #check3:checked ~ .container .photo-gallery .panda{
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            transition: .5s;
+
+        }
+        #check3:checked ~ .container .photo-gallery .tiger,
+        #check3:checked ~ .container .photo-gallery .dolphin,
+        #check3:checked ~ .container .photo-gallery .dog{
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
+            transition: .5s;
+
+        }
+
+        #check4:checked ~ .container .photo-gallery .tiger{
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            transition: .5s;
+
+        }
+        #check4:checked ~ .container .photo-gallery .panda,
+        #check4:checked ~ .container .photo-gallery .dolphin,
+        #check4:checked ~ .container .photo-gallery .dog{
+            opacity: 0;
+            transform: scale(0);
+            position: absolute;
+            transition: .5s;
+
+        }
+
+                
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" ></script>
+</head>
+<body>
+
+    <div  class="topnav" >
+        
+            <div class="dropdown">
+                <button class="dropbtn" onclick="myFunction()">Crawl
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                    <div id="myDropdown" class="dropdown-content">
+                        
+                        <a  href="{{ url_for('SHOPEE_CRAWL') }}" target="_blank">Shopee</a>
+                        
+                        <a  href="{{ url_for('LAZADA_CRAWL') }}" target="_blank">Lazada</a>
+                        <a  href="{{ url_for('TIKI_CRAWL') }}" target="_blank">Tiki</a>
+                        <a  href="{{ url_for('SENDO_CRAWL') }}" target="_blank">Sendo</a>
+                    </div>
+            </div> 
+            
+            
+            <a href="#home"><button class="btn"><i class="fa fa-home"></i></button></a>
+            <a href="{{ url_for('index') }}">History</a>
+            <a href="#home">Shopee</a>
+            <a href="#home">Lazada</a>
+            <a href="#home">Tiki</a>
+            <a href="#home">Sendo</a>
+            
+            
+        
+        
+    </div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+    <div class="wrapper">
+       
+        
+            <div class="search-input">   
+                <form method="post"><input type="text" name="Name" placeholder="Type..." value={{ request.form['Name'] }}>
+                    <div class="autocom-box">
+                        <li>giày bóng đá nike</li>
+                        <li>giày bóng đá adidas</li>
+                        <li>giày đá bóng giá rẻ</li>
+                        <li>giày đá bóng mizuno</li>
+                        <li>giày neymar</li>
+                    </div>         
+                
+                <!-- "https://www.google.com/search?q=" -->
+                    <button class="icon" type="submit" ><i class="fas fa-search"></i></button>
+                </form>    
+                
+            </div>
+        
+            
+
+    </div>
+    
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(e) {
+        if (!e.target.matches('.dropbtn')) {
+            var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+    <script>
+        const searchWrapper=document.querySelector(".search-input");
+        const inputBox=searchWrapper.querySelector("input");
+        const suggBox=searchWrapper.querySelector(".autocom-box");
+
+
+        inputBox.onkeyup = (e)=>{
+            let userData = e.target.value;
+            let emptyArray = [];
+            if(userData){
+                emptyArray = suggestion.filter((data) =>{
+                    return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+                    
+                })
+                emptyArray = emptyArray.map((data)=>{
+                    return data = '<li>'+data+'</li>' ;
+                })
+                console.log(emptyArray)
+                searchWrapper.classList.add("active");
+                showSugg(emptyArray)
+                let allList = suggBox.querySelectorAll("li");
+                for(let i = 0 ; i < allList.length;i++){
+                    allList[i].setAttribute("onclick","select(this)");
+                }
+            }else{
+                searchWrapper.classList.remove("active");
+
+            }
+        }
+        function select(element){
+            let selectUserdata = element.textContent;
+            inputBox.value = selectUserdata;
+            searchWrapper.classList.remove("active");
+
+            console.log(inputBox.value)
+
+        }
+        function showSugg(list){
+            let listData;
+            if (!list.length){
+                uservalue = inputBox.value;
+                listData = '<li>'+uservalue+'</li>';
+            }
+            else{
+                listData =list.join('');
+            }
+            suggBox.innerHTML =listData;
+        }
+    </script>
+    <script>
+        let suggestion = [
+            'wika 3 sọc',
+            'giày bóng đá adidas',
+        'giày đá banh chính hãng',
+        'giày đá banh nike',
+        'giày đinh đá bóng',
+        'giày đá bóng giá rẻ',
+        'giày đá bóng mizuno',
+        'giày bóng đá sân cỏ nhân tạo',
+        'giày đá banh adidas',
+        'giày đá bóng trẻ em',
+        'giày predator',
+        'giày đá bóng nike chính hãng',
+        'giày đá bóng cỏ nhân tạo',
+        'giày bóng đá mizuno',
+        'giày sân cỏ nhân tạo',
+        'giày nike đá bóng',
+        'kamito giày',
+        'giày đá bóng sân cỏ tự nhiên',
+        'giày đá bóng bitis',
+        'giày đá bóng adidas chính hãng',
+        'giay da banh',
+        'giày đá bóng nike mercurial',
+        'giày đá bóng puma',
+        'kamito ta11',
+        'giày mira',
+        'giày đá bóng 150k',
+        'giày ct3',
+        'giày đá bóng tốt',
+        'giày đá banh sân cỏ nhân tạo',
+        'giày mitre',
+        'giày đá bóng wika',
+        'giày neymar',
+        'shop giày bóng đá',
+        'giày bóng đá tốt',
+        'giày đá banh bitis',
+        'giày đá bóng cổ cao',
+        ];
+    </script>
+    
+
+</body>
+</html>
+
+
